@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace cr_patcher_csharp
 {
+    /// <summary>
+    /// Base on cr-proxy config
+    /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class Config
     {
@@ -16,6 +19,7 @@ namespace cr_patcher_csharp
         [JsonProperty("key")]
         public string Key { get; set; } = "72f1a4a4c48e44da0c42310f800e96624e6dc6a641a9d41c3b5039d8dfadc27e";
         [JsonProperty("keyStore")]
+        
         public Dictionary<string, string> versions { get; set; } = new Dictionary<string, string>()
         {
             { "1.8.0" , "9e6657f2b419c237f6aeef37088690a642010586a7bd9018a15652bab8370f4f"},

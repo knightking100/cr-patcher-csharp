@@ -33,7 +33,7 @@ namespace cr_patcher_csharp
             p.Exited += (sender, e)
                 =>
             {
-                Console.WriteLine("lol");
+                Console.WriteLine("Process exited");
             };
             Console.WriteLine($"Zipaligned {apkname}");
             
