@@ -50,7 +50,7 @@ namespace cr_patcher_csharp
 
             sw.Stop();
             WriteLineCenter($"Finished operation in {sw.Elapsed.TotalMilliseconds}ms");
-            File.Delete($"{Path.GetFileNameWithoutExtension(apk)}-signed.apk");
+            //File.Delete($"{Path.GetFileNameWithoutExtension(apk)}-signed.apk");
             
         }
         private static bool CheckRequirement()
