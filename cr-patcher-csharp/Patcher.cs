@@ -37,7 +37,7 @@ namespace cr_patcher_csharp
             }
             file.AddFile("lib\\armeabi-v7a\\libg.so", "lib/armeabi-v7a");
             file.Save();
-            Delete("lib");
+            
         }
         public static void ExtractLibg(string apkname)
         {
