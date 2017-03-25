@@ -18,7 +18,13 @@ namespace cr_patcher_csharp
         [JsonProperty("keyStore")]
         public Dictionary<string, string> versions { get; set; } = new Dictionary<string, string>()
         {
-            { "1.8.0" , "9e6657f2b419c237f6aeef37088690a642010586a7bd9018a15652bab8370f4f"}
+            { "1.8.0" , "9e6657f2b419c237f6aeef37088690a642010586a7bd9018a15652bab8370f4f"},
+            { "1.7.0", "0f9fff6d583023c5c739c053581c994dbe37789900ffda312fc97edfd091945f"},
+            {"1.6.0","e330c7916ae0a66f3a90eae97a863ee00ac1dcad058877b1eecfc8fe91c93532" },
+            { "1.5.0", "bbdba8653396d1df84efaea923ecd150d15eb526a46a6c39b53dac974fff3829"},
+            { "1.4.1" , "9bc23206948f104820e347ed47fa92256ca843b72aec503a0982889cd6a7eb38"},
+            { "1.2.3" , "ba105f0d3a099414d154046f41d80cf122b49902eab03b78a912f3c66dba2c39"}
+            
         };
       
         public static void Create(string path)

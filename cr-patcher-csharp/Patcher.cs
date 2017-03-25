@@ -37,6 +37,7 @@ namespace cr_patcher_csharp
             }
             file.AddFile("lib\\armeabi-v7a\\libg.so", "lib/armeabi-v7a");
             file.Save();
+            Delete("lib");
         }
         public static void ExtractLibg(string apkname)
         {
@@ -49,8 +50,8 @@ namespace cr_patcher_csharp
                     Console.Write("Extracting libg.so...");
                     ZipEntry x86lib = apk["lib/x86/libg.so"];
                     ZipEntry armLib = apk["lib/armeabi-v7a/libg.so"];
-                    x86lib.Extract(Environment.CurrentDirectory);
-                    armLib.Extract(Environment.CurrentDirectory);
+                    x86lib.Extract();
+                    armLib.Extract();
                     Console.WriteLine("DONE");
                 }
                 else

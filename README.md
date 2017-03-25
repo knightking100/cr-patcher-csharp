@@ -26,7 +26,9 @@ I would love to! Just don't break the code!
   - Rename it to com.supercell.clashroyale-version.apk
   - Open the program and enter the name
   - Wait till it complete. You will get an apk call ...completed
-
+## Requirement
+  - [Java](https://java.com/en/download/) in order to run sign.jar
+  - .Net Framework (of course lol)
 ## Reference
 [cr-patcher](https://github.com/royale-proxy/cr-patcher)
 [coc-patcher](https://github.com/clugh/coc-patcher)

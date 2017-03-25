@@ -36,6 +36,7 @@ namespace cr_patcher_csharp
                 Console.WriteLine("lol");
             };
             Console.WriteLine($"Zipaligned {apkname}");
+            
         }
     }
 }
