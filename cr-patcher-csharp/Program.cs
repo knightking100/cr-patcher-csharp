@@ -10,73 +10,57 @@ namespace cr_patcher_csharp
     {
         static void Main(string[] args)
         {
-            string CrayCray = "cr-patcher-csharp";
-            string titl = $"CrayCray Modded APK Downloader";
-            int length = (Console.WindowWidth - CrayCray.Length) / 2;
-            string spaces = new string(' ',length);
-            Console.Title = $"{spaces}CrayCray Modded APK Downloader{spaces}";
-            Console.SetCursorPosition((Console.WindowWidth - CrayCray.Length) / 2, Console.CursorTop);
-            WriteLineCenter("CrayCray MODDED APK Downloader ALPHA");
-            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
-            if (CheckRequirement())
-            {
-                if (args.Length == 0 || args[0] == null)
-                {
-                    WriteLineCenter("Enter apk name in this folder");
-                    string apk = Console.ReadLine();
-                    Do(apk);
-                }
-                else
-                {
-                    Do(args[0]);
-                }
-
-            }
-            Console.ReadLine();
+            ShowWelcomeMessage();
+            Console.WriteLine($"Enter APK/IPA filename in this folder");
+            string name = Console.ReadLine();
+            Do(name);
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey(true);
         }
-        static void Do(string apk)
+        static void Do(string path)
         {
-            Console.Title = $"CrayCray MODDED APK Downloader ALPHA [Downloading {apk}...]";
+            if(!File.Exists(path))
+            {
+                Console.WriteLine($"File '{path}' doesn't exist");
+                return;
+            }
+            Console.Title = $"{Title} - {path}";
 
-            WriteLineCenter("Starting operation...");
+            Console.WriteLine("Starting operation...");
             Stopwatch sw = new Stopwatch();
             sw.Start();
-
-            Patcher.ExtractLibg(apk);
-
-            Patcher.Patch(apk);
-            Apktool.SignAPK(apk);
-            Apktool.ZipalignAPK(apk);
-
+            
+            Patcher.Start(path);
+            
             sw.Stop();
-            WriteLineCenter($"Finished operation in {sw.Elapsed.TotalMilliseconds}ms");
-            //File.Delete($"{Path.GetFileNameWithoutExtension(apk)}-signed.apk");
+            Console.WriteLine($"Finished operation in {sw.Elapsed.TotalMilliseconds}ms");
             
         }
+
         private static bool CheckRequirement()
         {
-            WriteLineCenter("Checking requirements...");
+            Console.WriteLine("Checking requirements...");
             
             if(!File.Exists("Tools\\signapk.jar"))
             {
-                WriteLineCenter("signapk.jar.. FAILED");
+                Console.WriteLine("signapk.jar.. FAILED");
                 return false;
             }
-            WriteLineCenter(" --> signapk.jar...OK");
+            Console.WriteLine(" --> signapk.jar...OK");
             
             if (!File.Exists("Tools\\zipalign.exe"))
             {
-                WriteLineCenter("zipalign.exe...FAILED");
+                Console.WriteLine("zipalign.exe...FAILED");
                 return false;
             }
-            WriteLineCenter(" --> zipalign.exe...OK");
+            Console.WriteLine(" --> zipalign.exe...OK");
             
             if(!JavaInstalled())
             {
-                WriteLineCenter("Java Not installed yet");
+                Console.WriteLine("Java Not installed yet");
                 return false;
             }
-            WriteLineCenter(" --> Java...INSTALLED");
+            Console.WriteLine(" --> Java...INSTALLED");
             return true;
         }
         private static bool JavaInstalled()
@@ -94,17 +78,26 @@ namespace cr_patcher_csharp
                 .Any(displayName => displayName != null && displayName.Contains("Java"));
         
         }
-        private static void WriteLineCenter(object xD)
+        private static void ShowWelcomeMessage()
         {
-            Console.SetCursorPosition((Console.WindowWidth - xD.ToString().Length) / 2, Console.CursorTop);
-            Console.WriteLine(xD);
+            Console.Title = Title;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            WriteCenter($"--- {Title} by {Author} ---");
+            WriteCenter($"--- Latest source code can be found at {GitHub} ---");
+            WriteCenter(StartMessage);
+            Console.ResetColor();
+        }
+        private static void WriteCenter(string str)
+        {
+            Console.SetCursorPosition((Console.WindowWidth - str.Length) / 2, Console.CursorTop);
+            Console.WriteLine(str);
             Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
         }
-        private static void WriteCenter(object xD)
-        {
-            Console.SetCursorPosition((Console.WindowWidth - xD.ToString().Length) / 2, Console.CursorTop);
-            Console.Write(xD);
-            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
-        }
+        /* Some information
+         */
+        static string Title = "Clash Royale Patcher Sharp v1.1";//Should be assembly version but i'm lazy :P
+        static string Author = "knightking10";
+        static string GitHub = "https://github.com/knightking100/cr-patcher-csharp";
+        static string StartMessage = $"cr-patcher-sharp is starting...";
     }
 }
