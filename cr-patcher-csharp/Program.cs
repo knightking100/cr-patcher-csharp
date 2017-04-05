@@ -89,9 +89,8 @@ namespace cr_patcher_csharp
         }
         private static void WriteCenter(string str)
         {
-            Console.SetCursorPosition((Console.WindowWidth - str.Length) / 2, Console.CursorTop);
             Console.WriteLine(str);
-            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
+            
         }
         /* Some information
          */
